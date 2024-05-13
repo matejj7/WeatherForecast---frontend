@@ -1,0 +1,41 @@
+import {
+    faSun,
+    faCloud,
+    faSmog,
+    faCloudRain,
+    faCloudShowersHeavy,
+    faSnowflake,
+    faPooStorm,
+    faCloudMeatball
+  } from '@fortawesome/free-solid-svg-icons';
+
+  export const weatherIcons = {
+    '0': faSun,
+    '1': faCloud,
+    '2': faCloud,
+    '3': faCloud,
+    '45': faSmog,
+    '48': faSmog,
+    '51': faCloudRain,
+    '53': faCloudRain,
+    '55': faCloudRain,
+    '56': faCloudRain,
+    '57': faCloudRain,
+    '61': faCloudShowersHeavy,
+    '63': faCloudShowersHeavy,
+    '65': faCloudShowersHeavy,
+    '66': faCloudShowersHeavy,
+    '67': faCloudShowersHeavy,
+    '71': faSnowflake,
+    '73': faSnowflake,
+    '75': faSnowflake,
+    '77': faSnowflake,
+    '80': faCloudRain,
+    '81': faCloudRain,
+    '82': faCloudRain,
+    '85': faSnowflake,
+    '86': faSnowflake,
+    '95': faPooStorm,
+    '96': faCloudMeatball,
+    '99': faCloudMeatball
+  };
