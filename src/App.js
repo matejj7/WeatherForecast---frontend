@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import WeatherTable from './components/WeatherTable';
 import MapView from './components/MapView';
 import './App.css';
-import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
+import axios from 'axios';
 
 function App() {
   const [weatherData, setWeatherData] = useState([]);
-  const [inputCoordinates, setInputCoordinates] = useState({ lat: '', lng: '' }); // Początkowo puste stringi
+  const [inputCoordinates, setInputCoordinates] = useState({ lat: '', lng: '' });
   const [darkMode, setDarkMode] = useState(false);
-  const [error, setError] = useState(''); // Adding error state
+  const [error, setError] = useState('');
 
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+    console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL); // Sprawdź, czy zmienna jest poprawnie załadowana
   }, [darkMode]);
 
   const fetchWeather = () => {
     if (inputCoordinates.lat && inputCoordinates.lng) {
-      axios.get(`http://localhost:8080/?latitude=${inputCoordinates.lat}&longitude=${inputCoordinates.lng}`)
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/?latitude=${inputCoordinates.lat}&longitude=${inputCoordinates.lng}`)
         .then(response => setWeatherData(response.data))
         .catch(error => console.error('Error fetching weather data:', error));
     }
@@ -26,7 +27,7 @@ function App() {
     if (inputCoordinates.lat && inputCoordinates.lng) {
       fetchWeather();
     }
-  }, [inputCoordinates]); // Dodaj inputCoordinates jako zależność
+  }, [inputCoordinates]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +70,8 @@ function App() {
           onChange={e => handleInputChange(e, 'lat')}
           placeholder="Enter latitude"
         />
-        <input type="number"
+        <input
+          type="number"
           value={inputCoordinates.lng === '' ? '' : inputCoordinates.lng}
           onChange={e => handleInputChange(e, 'lng')}
           placeholder="Enter longitude"
@@ -82,4 +84,3 @@ function App() {
 }
 
 export default App;
-
