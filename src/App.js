@@ -17,11 +17,12 @@ function App() {
 
   const fetchWeather = () => {
     if (inputCoordinates.lat && inputCoordinates.lng) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/?latitude=${inputCoordinates.lat}&longitude=${inputCoordinates.lng}`)
+      axios.get(`https://weatherforecast-backend.onrender.com/?latitude=${inputCoordinates.lat}&longitude=${inputCoordinates.lng}`)
         .then(response => setWeatherData(response.data))
         .catch(error => console.error('Error fetching weather data:', error));
     }
   };
+
 
   useEffect(() => {
     if (inputCoordinates.lat && inputCoordinates.lng) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
+import axios from 'axios';
 import WeatherIcon from './WeatherIcon';
 
 function WeatherTable({ coordinates }) {
@@ -7,7 +7,7 @@ function WeatherTable({ coordinates }) {
 
   const fetchWeather = () => {
     if (coordinates && coordinates.lat && coordinates.lng) {
-      axios.get(`http://localhost:8080/?latitude=${coordinates.lat}&longitude=${coordinates.lng}`)
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/?latitude=${coordinates.lat}&longitude=${coordinates.lng}`)
         .then(response => setWeatherData(response.data))
         .catch(error => console.error('Error fetching weather data:', error));
     }
